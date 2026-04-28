@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\TaskController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +23,9 @@ Route::middleware(['auth:api'])->controller(AuthController::class)->group(functi
             return response()->json(['message' => 'Admin Panel']);
         });
     });
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::apiResource('tasks', TaskController::class);
 });
 
